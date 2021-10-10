@@ -1,23 +1,23 @@
 package main
 
 import (
-	"os"
-	"fmt"
-	"time"
 	"errors"
+	"fmt"
+	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type episode struct {
-	nettohen int
+	nettohen   int
 	production int
-	broadcast int
-	viz int
-	name string
-	rjname string
-	jpname string
-	date time.Time
+	broadcast  int
+	viz        int
+	name       string
+	rjname     string
+	jpname     string
+	date       time.Time
 }
 
 var episodes []episode
@@ -51,13 +51,13 @@ func jpDate(date time.Time) string {
 
 func ogEpisode(broad, prod int, name, rjname, jpname, date string) episode {
 	ret := episode{
-		nettohen: -1,
+		nettohen:   -1,
 		production: prod,
-		broadcast: broad,
-		viz: broad,
-		name: name,
-		rjname: rjname,
-		jpname: jpname,
+		broadcast:  broad,
+		viz:        broad,
+		name:       name,
+		rjname:     rjname,
+		jpname:     jpname,
 	}
 
 	pdate, err := getDate(date)
@@ -100,7 +100,7 @@ func nhEpisode(nh int, order, name, rjname, jpname, date string) episode {
 		if err != nil {
 			panic(err)
 		}
-		viz , err = strconv.Atoi(orders[1])
+		viz, err = strconv.Atoi(orders[1])
 		if err != nil {
 			panic(err)
 		}
@@ -110,13 +110,13 @@ func nhEpisode(nh int, order, name, rjname, jpname, date string) episode {
 		}
 	}
 	ret := episode{
-		nettohen: nh,
+		nettohen:   nh,
 		production: prod,
-		broadcast: broad,
-		viz: viz,
-		name: name,
-		rjname: rjname,
-		jpname: jpname,
+		broadcast:  broad,
+		viz:        viz,
+		name:       name,
+		rjname:     rjname,
+		jpname:     jpname,
 	}
 
 	pdate, err := getDate(date)
@@ -196,30 +196,30 @@ func init() {
 	episodes = append(episodes, nhEpisode(43, "61", "Ryoga's Miracle Cure! Hand Over That Soap", "Ryōga no Taishitsu Kaizen Sekken!", "良牙の体質改善セッケン!", "September 7, 1990"))
 	episodes = append(episodes, nhEpisode(44, "62", "Fight! The Anything-Goes Obstacle Course Race", "Kakutō! Shōgaibutsu Rēsu", "格闘!障害物レース", "September 14, 1990"))
 	episodes = append(episodes, nhEpisode(45, "63/64", "Ranma Goes Back to Jusenkyo at Last", "Ranma, Tsuini Jusenkyō e Iku", "乱馬, ついに呪泉郷へ行く", "September 21, 1990"))
-	episodes = append(episodes, nhEpisode(46 , "64/65", "The Return of the Hawaiʻian Headmaster from Hell", "Kaettekita Hentai Kōchō", "帰ってきた変態校長", "October 5, 1990"))
-	episodes = append(episodes, nhEpisode(47 , "65/66", "Enter Kuno, the Night-Prowling Knight", "Tōjō! Shijō Saikyō ni Kunō", "登場!史上最強の九能", "October 12, 1990"))
-	episodes = append(episodes, nhEpisode(48 , "66/67", "Ranma Gets Weak!", "Ranma ga Yowaku Nacchatta!", "乱馬が弱くなっちゃった!", "October 19, 1990"))
-	episodes = append(episodes, nhEpisode(49 , "67/68", "Eureka! The Desperate Move of Desperation", "Kansei! Tondemonai Hissatsuwaza", "完成!とんでもない必殺技", "October 26, 1990"))
-	episodes = append(episodes, nhEpisode(50 , "68/69", "Showdown! Can Ranma Make a Comeback?", "Kessen! Ranma Fukkatsu Naru ka?", "決戦!乱馬復活なるか?", "November 2, 1990"))
-	episodes = append(episodes, nhEpisode(51 , "69/63", "Ukyo's Skirt! The Great Girly-Girl Gambit", "Ukyō no Sukāto Daisakusen", "右京のスカート大作戦!", "November 9, 1990"))
-	episodes = append(episodes, nhEpisode(52 , "70", "Here Comes Ranma's Mom!", "Ranma no Mama ga Yattekita!", "乱馬のママがやってきた!", "November 16, 1990"))
-	episodes = append(episodes, nhEpisode(53 , "71", "From Ryoga with Love", "Ryōga, Ai to Kunō wo Koete", "良牙, 愛と苦悩を越えて", "November 23, 1990"))
-	episodes = append(episodes, nhEpisode(54 , "72", "My Fiancé, the Cat", "Fianse wa Bakeneko", "フィアンセは化け猫", "November 30, 1990"))
-	episodes = append(episodes, nhEpisode(55 , "73", "Blow, Wind! To Be Young is to Go Gung-Ho", "Fukeyo Kaze! Seishun wa Nekketsuda", "吹けよ風!青春は熱血だ", "December 7, 1990"))
-	episodes = append(episodes, nhEpisode(56 , "74", "A Formidable New Disciple Appears", "Osorubeki Shindeshi Arawaru", "恐るべき新弟子現わる", "December 14, 1990"))
-	episodes = append(episodes, nhEpisode(57 , "75", "Step Outside!", "Omote ni Deyagare!", "おもてに出やがれ!", "December 21, 1990"))
-	episodes = append(episodes, nhEpisode(58 , "76", "Ryoga's \"Tendo Dojo Houseguest\" Diary", "Ryōga no Tendō Dōjō Isōrō Nikki", "良牙の天道道場居候日記", "January 11, 1991"))
-	episodes = append(episodes, nhEpisode(59 , "77", "Happosai's Happy Heart!", "Happōsai no Koi!", "八宝斉の恋!", "January 18, 1991"))
-	episodes = append(episodes, nhEpisode(60 , "78", "Extra, Extra! Kuno & Nabiki: Read All About It!", "Kunō Bōzen! Koi no Daiyogen", "九能ボー然!恋の大予言", "January 25, 1991"))
-	episodes = append(episodes, nhEpisode(61 , "79", "Ryoga the Strong... Too Strong", "Tsuyoku Narisugita Ryōga", "強くなりすぎた良牙", "February 1, 1991"))
-	episodes = append(episodes, nhEpisode(62 , "80", "Close Call! P-chan's Secret", "Ayaushi! P-chan no Himitsu", "あやうし!Pちゃんの秘密", "February 8, 1991"))
-	episodes = append(episodes, nhEpisode(63 , "81", "The Egg-Catcher Man", "Tamago wo Tsukamu Otoko", "たまごをつかむ男", "February 15, 1991"))
-	episodes = append(episodes, nhEpisode(64 , "82", "Ranma and Kuno's... First Kiss", "Ranma to Kunō no Hatsu Kisu?!", "らんまと九能の初キッス?!", "February 22, 1991"))
-	episodes = append(episodes, nhEpisode(65 , "83", "Shampoo's Red Thread of Dread!", "Shanpū no Akai Ito", "シャンプーの赤い糸", "March 1, 1991"))
-	episodes = append(episodes, nhEpisode(66 , "84", "Mousse Goes Home to the Country!", "Mūsu Kokyō ni Kaeru", "ムース故郷に帰る", "March 8, 1991"))
-	episodes = append(episodes, nhEpisode(67 , "85", "The Dumbest Bet in History!", "Shijō Saite no Kake", "史上サイテーの賭け", "March 15, 1991"))
-	episodes = append(episodes, nhEpisode(68 , "86", "Kuno Becomes a Marianne!", "Mariannu ni Natta Kunō", "マリアンヌになった九能", "March 22, 1991"))
-	episodes = append(episodes, nhEpisode(69 , "87", "Ranma, You Are Such A Jerk!", "Ranma Nanka Daikirai!", "乱馬なんか大キライ!", "March 29, 1991"))
+	episodes = append(episodes, nhEpisode(46, "64/65", "The Return of the Hawaiʻian Headmaster from Hell", "Kaettekita Hentai Kōchō", "帰ってきた変態校長", "October 5, 1990"))
+	episodes = append(episodes, nhEpisode(47, "65/66", "Enter Kuno, the Night-Prowling Knight", "Tōjō! Shijō Saikyō ni Kunō", "登場!史上最強の九能", "October 12, 1990"))
+	episodes = append(episodes, nhEpisode(48, "66/67", "Ranma Gets Weak!", "Ranma ga Yowaku Nacchatta!", "乱馬が弱くなっちゃった!", "October 19, 1990"))
+	episodes = append(episodes, nhEpisode(49, "67/68", "Eureka! The Desperate Move of Desperation", "Kansei! Tondemonai Hissatsuwaza", "完成!とんでもない必殺技", "October 26, 1990"))
+	episodes = append(episodes, nhEpisode(50, "68/69", "Showdown! Can Ranma Make a Comeback?", "Kessen! Ranma Fukkatsu Naru ka?", "決戦!乱馬復活なるか?", "November 2, 1990"))
+	episodes = append(episodes, nhEpisode(51, "69/63", "Ukyo's Skirt! The Great Girly-Girl Gambit", "Ukyō no Sukāto Daisakusen", "右京のスカート大作戦!", "November 9, 1990"))
+	episodes = append(episodes, nhEpisode(52, "70", "Here Comes Ranma's Mom!", "Ranma no Mama ga Yattekita!", "乱馬のママがやってきた!", "November 16, 1990"))
+	episodes = append(episodes, nhEpisode(53, "71", "From Ryoga with Love", "Ryōga, Ai to Kunō wo Koete", "良牙, 愛と苦悩を越えて", "November 23, 1990"))
+	episodes = append(episodes, nhEpisode(54, "72", "My Fiancé, the Cat", "Fianse wa Bakeneko", "フィアンセは化け猫", "November 30, 1990"))
+	episodes = append(episodes, nhEpisode(55, "73", "Blow, Wind! To Be Young is to Go Gung-Ho", "Fukeyo Kaze! Seishun wa Nekketsuda", "吹けよ風!青春は熱血だ", "December 7, 1990"))
+	episodes = append(episodes, nhEpisode(56, "74", "A Formidable New Disciple Appears", "Osorubeki Shindeshi Arawaru", "恐るべき新弟子現わる", "December 14, 1990"))
+	episodes = append(episodes, nhEpisode(57, "75", "Step Outside!", "Omote ni Deyagare!", "おもてに出やがれ!", "December 21, 1990"))
+	episodes = append(episodes, nhEpisode(58, "76", "Ryoga's \"Tendo Dojo Houseguest\" Diary", "Ryōga no Tendō Dōjō Isōrō Nikki", "良牙の天道道場居候日記", "January 11, 1991"))
+	episodes = append(episodes, nhEpisode(59, "77", "Happosai's Happy Heart!", "Happōsai no Koi!", "八宝斉の恋!", "January 18, 1991"))
+	episodes = append(episodes, nhEpisode(60, "78", "Extra, Extra! Kuno & Nabiki: Read All About It!", "Kunō Bōzen! Koi no Daiyogen", "九能ボー然!恋の大予言", "January 25, 1991"))
+	episodes = append(episodes, nhEpisode(61, "79", "Ryoga the Strong... Too Strong", "Tsuyoku Narisugita Ryōga", "強くなりすぎた良牙", "February 1, 1991"))
+	episodes = append(episodes, nhEpisode(62, "80", "Close Call! P-chan's Secret", "Ayaushi! P-chan no Himitsu", "あやうし!Pちゃんの秘密", "February 8, 1991"))
+	episodes = append(episodes, nhEpisode(63, "81", "The Egg-Catcher Man", "Tamago wo Tsukamu Otoko", "たまごをつかむ男", "February 15, 1991"))
+	episodes = append(episodes, nhEpisode(64, "82", "Ranma and Kuno's... First Kiss", "Ranma to Kunō no Hatsu Kisu?!", "らんまと九能の初キッス?!", "February 22, 1991"))
+	episodes = append(episodes, nhEpisode(65, "83", "Shampoo's Red Thread of Dread!", "Shanpū no Akai Ito", "シャンプーの赤い糸", "March 1, 1991"))
+	episodes = append(episodes, nhEpisode(66, "84", "Mousse Goes Home to the Country!", "Mūsu Kokyō ni Kaeru", "ムース故郷に帰る", "March 8, 1991"))
+	episodes = append(episodes, nhEpisode(67, "85", "The Dumbest Bet in History!", "Shijō Saite no Kake", "史上サイテーの賭け", "March 15, 1991"))
+	episodes = append(episodes, nhEpisode(68, "86", "Kuno Becomes a Marianne!", "Mariannu ni Natta Kunō", "マリアンヌになった九能", "March 22, 1991"))
+	episodes = append(episodes, nhEpisode(69, "87", "Ranma, You Are Such A Jerk!", "Ranma Nanka Daikirai!", "乱馬なんか大キライ!", "March 29, 1991"))
 	episodes = append(episodes, nhEpisode(70, "88/90", "Gimme That Pigtail", "Sono Osage Moratta!", "そのおさげもらったぁ!", "April 5, 1991"))
 	episodes = append(episodes, nhEpisode(71, "89/88", "When a Guy's Pride and Joy is Gone", "Otoko no Yabō ga Tsukiru Toki...", "男の野望が尽きる時...", "April 12, 1991"))
 	episodes = append(episodes, nhEpisode(72, "90/89", "Ling-Ling & Lung-Lung Strike Back!", "Rinrin Ranran no Gyakushū", "リンリン·ランランの逆襲", "April 19, 1991"))
@@ -445,7 +445,7 @@ func main() {
 		fmt.Println(epi)
 	case "episodes":
 		fmt.Println("Nettohen No.\tBroadcast No.\tViz No.\tProduction No.\tEN Title\tJP Title (romaji)\tJP Title\tBroadcast Date (YYYY-MM-DD)")
-		for _, epi := range(episodes) {
+		for _, epi := range episodes {
 			fmt.Printf("%d\t%d\t%d\t%d\t%s\t%s\t%s\t%s\n",
 				epi.nettohen,
 				epi.broadcast,
